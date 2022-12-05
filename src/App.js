@@ -43,25 +43,14 @@ const addTask = task =>{
 
 }
 
-const toggleReminder = id => {
+const toggleReminder = id => setTasks(tasks.map(task => task.id === id ? {...task, reminder: !task.reminder} : task))
 
-  setTasks(tasks.map(task => task.id === id ? {...task, reminder: !task.reminder} : task))
-
-}
-
-const deleteTask = id =>{
-
-  setTasks(tasks.filter(task => task.id !== id))
-
-}
-
+const deleteTask = id => setTasks(tasks.filter(task => task.id !== id))
 
   return (
     <div className="container">
-      <AddTask 
-        onAdd={addTask}
-        />
-      <Header/>
+      <Header title="Task Tracker"/>
+      <AddTask onAdd={addTask} />
       {tasks.length > 0  
       ? 
       (<Tasks 
