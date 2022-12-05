@@ -1,6 +1,7 @@
 import {useState} from 'react'
 import Header from './components/Header'
 import Tasks from './components/Tasks'
+import AddTask from './components/AddTask'
 
 const  App = () => {
 
@@ -48,6 +49,7 @@ const deleteTask = id =>{
 
   return (
     <div className="container">
+      <AddTask/>
       <Header/>
       {tasks.length > 0  
       ? 
