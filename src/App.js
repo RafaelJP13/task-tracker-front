@@ -34,6 +34,15 @@ const  App = () => {
 ])
 
 
+const addTask = task =>{
+
+  console.log(task)
+  const id = Math.floor(Math.random() * 1000) + 1
+  const newTask = {id, ...task}
+  setTasks([...tasks, newTask])
+
+}
+
 const toggleReminder = id => {
 
   setTasks(tasks.map(task => task.id === id ? {...task, reminder: !task.reminder} : task))
@@ -49,11 +58,17 @@ const deleteTask = id =>{
 
   return (
     <div className="container">
-      <AddTask/>
+      <AddTask 
+        onAdd={addTask}
+        />
       <Header/>
       {tasks.length > 0  
       ? 
-      (<Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder}/>)
+      (<Tasks 
+        tasks={tasks}
+        onDelete={deleteTask}
+        onToggle={toggleReminder}
+        />)
       :
       (
         'No Tasks to Show'
